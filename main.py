@@ -40,8 +40,8 @@ def main():
     }
   }
 
-  X_test, y_test = train_models(devices)
-  test_models(X_test, y_test)
+  train_models(devices)
+  test_models(devices)
 
 if __name__ == "__main__":
   main()
