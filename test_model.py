@@ -13,7 +13,9 @@ MODELS = {
 }
 
 def test_models(devices):
-  figure, axs = plt.subplots(len(devices), 1, figsize=(5, 5))
+  figure, axs = plt.subplots(4, 2, figsize=(10,10))
+  axs = axs.flatten()
+
   for _, (device, ax) in enumerate(zip(devices.keys(), axs)):
     X_test, y_test = joblib.load(f"models/{device}_test_data.pkl")
 
@@ -39,4 +41,9 @@ def test_models(devices):
 
     ax.set_title(f"Precison-Recall Curve for {device}")
 
+  for i in range(len(devices), len(axs)):
+    figure.delaxes(axs[i])
+
+  plt.tight_layout()
+  plt.savefig("precision_recall_curve.png")
   plt.show()
